@@ -1,0 +1,15 @@
+build:
+  image: docker:1.9.1
+  #privileged: true
+  #volumes:
+    #- /var/run/docker.sock:/var/run/docker.sock
+  environment:
+    DOCKER_HOST: tcp://localhost:2375
+  commands:
+    #- docker daemon --storage-driver=vfs
+    - docker version
+    - docker build -t butterfly .
+compose:
+  docker:
+    image: docker:1.9.1-dind
+    privileged: true
